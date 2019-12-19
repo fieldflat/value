@@ -1,0 +1,20 @@
+<!-- スライドショー -->
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1"
+  uk-slideshow="min-height: 250; max-height: 500; animation: push; autoplay: true; autoplay-interval: 4000;"
+  style="margin-top: 1.5em;">
+  <ul class="uk-slideshow-items">
+    <li>
+      <%= image_tag('1.jpeg') %>
+    </li>
+    <li>
+      <%= image_tag('1.jpeg') %>
+    </li>
+    <li>
+      <%= image_tag('1.jpeg') %>
+    </li>
+  </ul>
+  <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+    uk-slideshow-item="previous"></a>
+  <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+    uk-slideshow-item="next"></a>
+</div>
