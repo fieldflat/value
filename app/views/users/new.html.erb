@@ -1,6 +1,62 @@
 <% provide(:title, 'Sign up') %>
 
 <div class="uk-container">
-  <h1>Sign up</h1>
-  <p>This will be a signup page for new users.</p>
+  <%= form_for(@user, url: signup_path) do |f| %>
+    <%= render 'layouts/error_messages' %>
+
+    <%= f.label :name, "氏名(Name)",  class:"uk-form-label", for:"form-stacked-text-name" %>
+    <%= f.text_field :name, class:"uk-input", id:"form-stacked-text-name", type:"text", placeholder:"(例) 山田太郎" %>
+
+    <div class="uk-margin">
+      <%= f.label :university, "大学名(University)", class:"uk-form-label", for:"form-horizontal-select" %>
+      <div class="uk-form-controls">
+        <%= f.select :university, [["名古屋大学", "名古屋大学"], ["南山大学", "南山大学"]], {},  class: "uk-select", id: "form-horizontal-select", :prompt => "大学名を選択してください。"  %>
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :email, "大学メールアドレス(Email)", class:"uk-form-label", for:"form-stacked-text-email" %>
+      <%= f.email_field :email, class:"uk-input", id:"form-stacked-text-email", type:"email", placeholder:"aaa.bbb@*.mbox.nagoya-u.ac.jp" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :faculty, "学部・研究科(Faculty)", class:"uk-form-label", for:"form-stacked-text-faculty" %>
+      <%= f.text_field :faculty, class:"uk-input", id:"form-stacked-text-faculty", type:"text", placeholder:"(例) 工学部" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :subject, "学科・専攻(Subject)", class:"uk-form-label", for:"form-stacked-text-subject" %>
+      <%= f.text_field :subject, class:"uk-input", id:"form-stacked-text-subject", type:"text", placeholder:"(例) 電気電子・情報工学科" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :grade, "学年(Grade)", class:"uk-form-label", for:"form-stacked-text-grade" %>
+      <%= f.text_field :grade, class:"uk-input", id:"form-stacked-text-grade", type:"text", placeholder:"(例) 学部3年" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :password, "パスワード(Password)",  class:"uk-form-label", for:"form-stacked-text-password" %>
+      <%= f.password_field :password, class:"uk-input", id:"form-stacked-text-password", type:"password", placeholder:"パスワード(8文字以上)を入力してください。" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :password_confirmation, "パスワード確認用(Password confirmation)", class:"uk-form-label", for:"form-stacked-text-password_confirmation" %>
+      <%= f.password_field :password_confirmation, class:"uk-input", id:"form-stacked-text-password_confirmation", type:"password", placeholder:"パスワードを再度入力してください。" %>
+    </div>
+
+    <div class="uk-margin" style="text-align: center;">
+      <%= f.submit "新規登録", class: "uk-button uk-button-primary" %>
+    </div>
+  <% end %>
 </div>
+
+<script>
+  $('select').change(function() {
+    var val = $(this).val();
+    if (val == "南山大学") {
+      $("#form-stacked-text-email").attr('placeholder','南山大学のメールアドレス');
+    } else if (val == "名古屋大学") {
+      $("#form-stacked-text-email").attr('placeholder','aaa.bbb@*.mbox.nagoya-u.ac.jp');
+    }
+  });
+</script>

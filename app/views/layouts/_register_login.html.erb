@@ -2,11 +2,21 @@
   <h2 class="uk-heading-line uk-text-center"><span style="color: blue;">Valueで、繋がろう。</span></h2>
   <div uk-margin style="text-align: center;">
     <p>下のボタンから簡単登録！</p>
-    <button class="uk-button uk-button-default">新規登録</button>
+    <button class="uk-button uk-button-default" id="signup-button">新規登録</button>
   </div>
 
   <div uk-margin style="text-align: center; margin-top: 2em;">
     <p>すでに登録している人はログインを！</p>
-    <button class="uk-button uk-button-primary">ログイン</button>
+    <button class="uk-button uk-button-primary" id="login-button">ログイン</button>
   </div>
 </div>
+
+<script>
+  $('#signup-button').click(function(){
+    window.location.href = '/signup';
+  });
+
+  $('#login-button').click(function(){
+    window.location.href = '/login';
+  });
+</script>
