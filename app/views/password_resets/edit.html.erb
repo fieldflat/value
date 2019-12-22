@@ -1,0 +1,23 @@
+<% provide(:title, 'Reset password') %>
+
+<div class="uk-container">
+  <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+    <%= render 'layouts/error_messages' %>
+
+    <%= hidden_field_tag :email, @user.email %>
+
+    <div class="uk-margin">
+      <%= f.label :password, "パスワード(Password)",  class:"uk-form-label", for:"form-stacked-text-password" %>
+      <%= f.password_field :password, class:"uk-input", id:"form-stacked-text-password", type:"password", placeholder:"パスワード(8文字以上)を入力してください。" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :password_confirmation, "パスワード確認用(Password confirmation)", class:"uk-form-label", for:"form-stacked-text-password_confirmation" %>
+      <%= f.password_field :password_confirmation, class:"uk-input", id:"form-stacked-text-password_confirmation", type:"password", placeholder:"パスワードを再度入力してください。" %>
+    </div>
+
+    <div class="uk-margin" style="text-align: center;">
+      <%= f.submit "パスワードを更新", class: "uk-button uk-button-primary" %>
+    </div>
+  <% end %>
+</div>
