@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :faculty, presence: true, length: { maximum: 50 }
   validates :subject, presence: true, length: { maximum: 50 }
   validates :grade, presence: true, length: { maximum: 50 }
-  validates :password, presence: true, length: { minimum: 8 }
+  validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
   has_secure_password
 
   # 渡された文字列のハッシュ値を返す

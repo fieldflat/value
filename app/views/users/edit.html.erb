@@ -1,0 +1,40 @@
+<% provide(:title, 'Sign up') %>
+
+<div class="uk-container">
+  <%= form_for(@user) do |f| %>
+    <%= render 'layouts/error_messages' %>
+
+    <%= f.label :name, "氏名(Name)",  class:"uk-form-label", for:"form-stacked-text-name" %>
+    <%= f.text_field :name, class:"uk-input", id:"form-stacked-text-name", type:"text", placeholder:"(例) 山田太郎" %>
+
+    <div class="uk-margin">
+      <%= f.label :faculty, "学部・研究科(Faculty)", class:"uk-form-label", for:"form-stacked-text-faculty" %>
+      <%= f.text_field :faculty, class:"uk-input", id:"form-stacked-text-faculty", type:"text", placeholder:"(例) 工学部" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :subject, "学科・専攻(Subject)", class:"uk-form-label", for:"form-stacked-text-subject" %>
+      <%= f.text_field :subject, class:"uk-input", id:"form-stacked-text-subject", type:"text", placeholder:"(例) 電気電子・情報工学科" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :grade, "学年(Grade)", class:"uk-form-label", for:"form-stacked-text-grade" %>
+      <%= f.text_field :grade, class:"uk-input", id:"form-stacked-text-grade", type:"text", placeholder:"(例) 学部3年" %>
+    </div>
+
+    <div class="uk-margin" style="text-align: center;">
+      <%= f.submit "登録", class: "uk-button uk-button-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $('select').change(function() {
+    var val = $(this).val();
+    if (val == "南山大学") {
+      $("#form-stacked-text-email").attr('placeholder','南山大学のメールアドレス');
+    } else if (val == "名古屋大学") {
+      $("#form-stacked-text-email").attr('placeholder','aaa.bbb@*.mbox.nagoya-u.ac.jp');
+    }
+  });
+</script>
