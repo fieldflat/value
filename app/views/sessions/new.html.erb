@@ -12,6 +12,13 @@
       <%= f.password_field :password, class:"uk-input", id:"form-stacked-text-password", type:"password", placeholder:"パスワード(8文字以上)を入力してください。" %>
     </div>
 
+    <div class="uk-margin">
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me, class: "uk-checkbox" %>
+        <span>Remember me on this computer</span>
+      <% end %>
+    </div>
+
     <div class="uk-margin" style="text-align: center;">
       <%= f.submit "ログイン", class: "uk-button uk-button-primary" %>
     </div>
