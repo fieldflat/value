@@ -1,0 +1,19 @@
+<% provide(:title, 'Login') %>
+
+<div class="uk-container">
+  <%= form_for(:session, url: login_path) do |f| %>
+    <div class="uk-margin">
+      <%= f.label :email, "大学メールアドレス(Email)", class:"uk-form-label", for:"form-stacked-text-email" %>
+      <%= f.email_field :email, class:"uk-input", id:"form-stacked-text-email", type:"email", placeholder:"aaa.bbb@*.mbox.nagoya-u.ac.jp" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :password, "パスワード(Password)",  class:"uk-form-label", for:"form-stacked-text-password" %>
+      <%= f.password_field :password, class:"uk-input", id:"form-stacked-text-password", type:"password", placeholder:"パスワード(8文字以上)を入力してください。" %>
+    </div>
+
+    <div class="uk-margin" style="text-align: center;">
+      <%= f.submit "ログイン", class: "uk-button uk-button-primary" %>
+    </div>
+  <% end %>
+</div>
