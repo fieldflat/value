@@ -1,0 +1,7 @@
+<div class="uk-container">
+  <% flash.each do |message_type, message| %>
+      <div class="uk-alert uk-alert-<%= message_type %>">
+        <%= message %>
+      </div>
+  <% end %>
+</div>
