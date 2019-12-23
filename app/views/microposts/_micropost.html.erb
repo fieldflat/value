@@ -1,0 +1,22 @@
+<div class="uk-width-1-3" id="micropost-<%= micropost.id %>" uk-toggle="target: #modal-micropost-<%= micropost.id %>">
+  <div class="uk-card uk-card-default uk-card-body" style="padding: 0 !important;">
+    <%= image_tag 'sample_item.jpg', class: "uk-img" %>
+    <div>
+      <span style="font-size: 12px;"><%= micropost.title %></span><br>
+      <span style="font-size: 12px;"><%= micropost.price %></span>
+    </div>
+  </div>
+</div>
+
+<!-- This is the modal -->
+<div id="modal-micropost-<%= micropost.id %>" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title"><%= micropost.title %></h2>
+    <p><%= micropost.content %></p>
+    <p><%= micropost.price %></p>
+    <p class="uk-text-right">
+      <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
+      <button class="uk-button uk-button-primary" type="button">購入する</button>
+    </p>
+  </div>
+</div>

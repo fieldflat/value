@@ -6,4 +6,20 @@
       </h1>
     </section>
   </aside>
+
+  <div class="uk-text-center" uk-grid>
+    <% if @user.microposts.any? %>
+      <%= render @microposts %>
+    <% end %>
+  </div>
+
+  <ul class="uk-pagination">
+    <% if @now_page > 1%>
+      <li><a href="/users/<%= @user.id %>?page=<%= @now_page-1 %>"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a></li>
+    <% end %>
+
+    <% if @now_page < @max_page %>
+      <li class="uk-margin-auto-left"><a href="/users/<%= @user.id %>?page=<%= @now_page+1 %>">Next <span class="uk-margin-small-left" uk-pagination-next></span></a></li>
+    <% end %>
+  </ul>
 </div>

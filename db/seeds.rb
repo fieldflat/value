@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.first
+50.times do
+  user.microposts.create!(title: "Test", content: "TestTestTestTestTestTest", price: "1000円")
+end
