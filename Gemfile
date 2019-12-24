@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'kaminari'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -60,6 +62,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+end
+
+group :production do
+  gem 'pg'
+  gem 'fog'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

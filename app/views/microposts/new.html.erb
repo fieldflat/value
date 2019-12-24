@@ -26,6 +26,12 @@
       </div>
     </div>
 
+    <div class="uk-margin">
+      <%= f.label :picture, "画像", class:"uk-form-label", for:"" %>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', id:"" %><br/>
+      <span style="color: red;">※画像は「スクエア」で載せてください！</span>
+    </div>
+
     <div class="uk-margin" style="text-align: center;">
       <%= f.submit "出品する", class: "uk-button uk-button-primary" %>
     </div>

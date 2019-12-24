@@ -2,7 +2,7 @@
 
 <div class="uk-container">
   <%= form_for(@user, url: signup_path) do |f| %>
-    <%= render 'layouts/error_messages' %>
+    <%= render 'layouts/error_messages', object: f.object %>
 
     <%= f.label :name, "氏名(Name)",  class:"uk-form-label", for:"form-stacked-text-name" %>
     <%= f.text_field :name, class:"uk-input", id:"form-stacked-text-name", type:"text", placeholder:"(例) 山田太郎" %>
