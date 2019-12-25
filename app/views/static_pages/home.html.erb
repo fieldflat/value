@@ -3,15 +3,20 @@
 <!-- 検索フォーム -->
 <%= render "layouts/search" %>
 
-<!-- スライドショー -->
-<%= render "layouts/slideshow" %>
+<% unless logged_in? %>
+  <!-- スライドショー -->
+  <%= render "layouts/slideshow" %>
+<% end %>
 
 <!-- 商品情報 -->
 <%= render "layouts/recent_items" %>
 
-<!-- Valueの紹介 -->
-<%= render "layouts/introduction" %>
+<% if logged_in? %>
 
-<!-- Valueで、繋がろう。 -->
-<%= render "layouts/register_login" %>
+<% else %>
+  <!-- Valueの紹介 -->
+  <%= render "layouts/introduction" %>
 
+  <!-- Valueで、繋がろう。 -->
+  <%= render "layouts/register_login" %>
+<% end %>

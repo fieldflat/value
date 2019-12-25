@@ -1,0 +1,39 @@
+<% provide(:title, 'Edit') %>
+
+<div class="uk-container">
+  <%= form_for(@micropost) do |f| %>
+    <%= render 'layouts/error_messages', object: f.object %>
+
+    <div class="uk-margin">
+      <%= f.label :title, "タイトル",  class:"uk-form-label", for:"form-stacked-text-title" %>
+      <%= f.text_field :title, class:"uk-input", id:"form-stacked-text-title", type:"text", placeholder:"(例) 微分積分学" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :content, "説明",  class:"uk-form-label", for:"form-stacked-text-content" %>
+      <%= f.text_area :content, class:"uk-textarea", id:"form-stacked-text-content", type:"text", placeholder:"出品物や依頼事項の詳細について詳しく書いてください。", rows: 10 %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :price, "値段",  class:"uk-form-label", for:"form-stacked-text-price" %>
+      <%= f.text_field :price, class:"uk-input", id:"form-stacked-text-price", type:"text", placeholder:"(例) 300円" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :requested, "出品型＆依頼型", class:"uk-form-label", for:"form-horizontal-request" %>
+      <div class="uk-form-controls">
+        <%= f.select :requested, [["出品型(フリマ)", false], ["依頼型(掃除など)", true]], {},  class: "uk-select", id: "form-horizontal-request", :prompt => "選択してください。"  %>
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :picture, "画像", class:"uk-form-label", for:"" %>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', id:"" %><br/>
+      <span style="color: red;">※画像は「スクエア」で載せてください！</span>
+    </div>
+
+    <div class="uk-margin" style="text-align: center;">
+      <%= f.submit "出品する", class: "uk-button uk-button-primary" %>
+    </div>
+  <% end %>
+</div>

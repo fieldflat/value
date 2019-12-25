@@ -23,9 +23,17 @@
     <% end %>
     <p><%= micropost.content %></p>
     <p><%= micropost.price %></p>
-    <p class="uk-text-right">
-      <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
-      <button class="uk-button uk-button-primary" type="button">購入する</button>
-    </p>
+    <% if current_user.id == micropost.user.id %>
+      <p class="uk-text-right">
+        <button class="uk-button uk-button-default uk-modal-close uk-button-small" type="button">閉じる</button>
+        <%= link_to "編集する", edit_micropost_path(micropost), class: "uk-button uk-button-primary uk-button-small" %>
+        <%= link_to "削除する", micropost_path(micropost), method: :delete, data: {confirm: "削除します。よろしいですか？"}, class: "uk-button uk-button-danger uk-button-small" %>
+      </p>
+    <% else %>
+      <p class="uk-text-right">
+        <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
+        <button class="uk-button uk-button-primary" type="button">購入する</button>
+      </p>
+    <% end %>
   </div>
 </div>

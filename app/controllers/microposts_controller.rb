@@ -33,7 +33,7 @@ class MicropostsController < ApplicationController
   def update
     if @micropost.update_attributes(microposts_params)
       flash[:success] = "編集しました！"
-      redirect_to @micropost
+      redirect_to current_user
     else
       render 'edit'
     end
