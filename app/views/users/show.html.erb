@@ -16,6 +16,8 @@
   <div class="uk-text-center" uk-grid>
     <% if @user.microposts.any? %>
       <%= render @microposts %>
+    <% else %>
+      <p>まだ出品がありません。</p>
     <% end %>
   </div>
 

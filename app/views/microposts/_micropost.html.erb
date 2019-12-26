@@ -1,13 +1,13 @@
 <div class="uk-width-1-3" id="micropost-<%= micropost.id %>" uk-toggle="target: #modal-micropost-<%= micropost.id %>">
   <div class="uk-card uk-card-default uk-card-body" style="padding: 0 !important;">
     <% if micropost.picture? %>
-      <%= image_tag micropost.picture.url, class: "uk-img", style: 'height: 100px !important;' %>
+      <%= image_tag micropost.picture.url, class: "uk-img", style: 'height: 6em !important;' %>
     <% else %>
-      <%= image_tag 'sample_item.jpg', class: "uk-img" %>
+      <%= image_tag 'sample_item.jpg', class: "uk-img", style: 'height: 6em !important;' %>
     <% end %>
     <div>
-      <span style="font-size: 12px;"><%= micropost.title %></span><br>
-      <span style="font-size: 12px;"><%= micropost.price %></span>
+      <span style="font-size: 12px;"><%= display_string(micropost.title) %></span><br>
+      <span style="font-size: 12px;"><%= display_string(micropost.price) %></span><br>
     </div>
   </div>
 </div>
@@ -23,7 +23,8 @@
     <% end %>
     <p><%= micropost.content %></p>
     <p><%= micropost.price %></p>
-    <% if current_user.id == micropost.user.id %>
+    <p><%= link_to micropost.user.name, micropost.user %>の出品(<span style="font-size: 14px;"><%= micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
+    <% if !current_user.nil? && current_user.id == micropost.user.id %>
       <p class="uk-text-right">
         <button class="uk-button uk-button-default uk-modal-close uk-button-small" type="button">閉じる</button>
         <%= link_to "編集する", edit_micropost_path(micropost), class: "uk-button uk-button-primary uk-button-small" %>
