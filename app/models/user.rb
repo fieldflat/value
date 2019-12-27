@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :my_room, class_name: "Room",
+                            foreign_key: :buyer_id,
+                            dependent: :destroy
+  has_many :buying_microposts, through: :my_room, source: :micropost
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest

@@ -1,0 +1,11 @@
+<div class="uk-container">
+  <% if @rooms.empty? %>
+    <p>購入中の商品はありません。</p>
+  <% else %>
+    <ul>
+      <% @rooms.each do |room| %>
+        <li><%= room.micropost.title %>(micropost_id: <%= room.micropost.id %>)</li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
