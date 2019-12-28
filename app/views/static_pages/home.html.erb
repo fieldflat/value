@@ -8,8 +8,13 @@
   <%= render "layouts/slideshow" %>
 <% end %>
 
-<!-- 商品情報 -->
+<!-- 最近の商品情報 -->
 <%= render "layouts/recent_items" %>
+
+<!-- おすすめの商品情報 -->
+<% unless logged_in? %>
+  <%= render "layouts/recommend_items" %>
+<% end %>
 
 <% if logged_in? %>
 

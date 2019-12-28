@@ -7,7 +7,10 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(buyer_id: current_user.id, micropost_id: params[:micropost_id])
-    if @room.save
+    @micropost = Micropost.find(params[:micropost_id])
+    if !@micropost.purchased && @room.save
+      @micropost.purchased = true
+      @micropost.save
       flash[:success] = "商品を購入しました！"
       redirect_to rooms_url
     else
