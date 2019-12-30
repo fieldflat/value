@@ -3,7 +3,7 @@
 <!-- 検索フォーム -->
 <%= render "layouts/search" %>
 
-<% unless logged_in? %>
+<% if (!logged_in? && !(defined? @search_words)) %>
   <!-- スライドショー -->
   <%= render "layouts/slideshow" %>
 <% end %>
@@ -12,7 +12,7 @@
 <%= render "layouts/recent_items" %>
 
 <!-- おすすめの商品情報 -->
-<% unless logged_in? %>
+<% if (!logged_in? && !(defined? @search_words)) %>
   <%= render "layouts/recommend_items" %>
 <% end %>
 

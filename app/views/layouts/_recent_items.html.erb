@@ -1,5 +1,8 @@
 <div class="uk-container" style="margin-top: 3em;">
   <h2 class="uk-heading-bullet">最近出品されたアイテム</h2>
+  <% if defined? @search_words %>
+    <p>「<%= @search_words %>」で検索した結果</p>
+  <% end %>
 
   <div class="uk-text-center" uk-grid>
     <% if @microposts.any? %>

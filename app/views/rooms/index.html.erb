@@ -2,9 +2,49 @@
   <% if @rooms.empty? %>
     <p>購入中の商品はありません。</p>
   <% else %>
-    <ul>
+    <ul style="padding: 0;">
       <% @rooms.each do |room| %>
-        <li><%= room.micropost.title %>(micropost_id: <%= room.micropost.id %>)</li>
+        <li style="list-style: none;">
+          <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+            <h3 class="uk-card-title"><%= room.micropost.title %></h3>
+            <div>
+              <p uk-margin>
+                <button class="uk-button uk-button-default" id="micropost-<%= room.micropost.id %>" uk-toggle="target: #modal-micropost-<%= room.micropost.id %>">
+                  商品情報
+                </button>
+                <button class="uk-button uk-button-primary">メッセージ</button>
+              </p>
+            </div>
+          </div>
+        </li>
+
+        <!-- This is the modal -->
+        <div id="modal-micropost-<%= room.micropost.id %>" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title"><%= room.micropost.title %></h2>
+            <% if room.micropost.picture? %>
+              <%= image_tag room.micropost.picture.url, class: "uk-img" %>
+            <% else %>
+              <%= image_tag 'sample_item.jpg', class: "uk-img" %>
+            <% end %>
+            <p><%= room.micropost.content %></p>
+            <p><%= room.micropost.price %></p>
+            <p><%= link_to room.micropost.user.name, room.micropost.user %>の出品(<span style="font-size: 14px;"><%= room.micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
+            <% if !current_user.nil? && current_user.id == room.micropost.user.id %>
+              <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close uk-button-small" type="button">閉じる</button>
+                <%= link_to "編集する", edit_micropost_path(room.micropost), class: "uk-button uk-button-primary uk-button-small" %>
+                <%= link_to "削除する", micropost_path(room.micropost), method: :delete, data: {confirm: "削除します。よろしいですか？"}, class: "uk-button uk-button-danger uk-button-small" %>
+              </p>
+            <% else %>
+              <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
+                <%= link_to "購入する", rooms_path(micropost_id: room.micropost.id), method: :post, class: "uk-button uk-button-primary", data: {confirm: "購入します。よろしいですか？"} %>
+                <%# <button class="uk-button uk-button-primary" type="button">購入する</button> %>
+              </p>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </ul>
   <% end %>

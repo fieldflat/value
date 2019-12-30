@@ -10,7 +10,7 @@ module ApplicationHelper
     end
   end
 
-  def display_string(str = '', max_length = 8)
+  def display_string(str = '', max_length = 6)
     if str.length <= max_length
       str
     else

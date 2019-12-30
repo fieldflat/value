@@ -43,6 +43,7 @@ class MicropostsController < ApplicationController
     @microposts = Micropost.where(purchased: false)
     @microposts = @microposts.where("title like ?", "%"+params[:micropost][:string]+"%")
                              .or(Micropost.where("content like ?", "%"+params[:micropost][:string]+"%"))
+    @search_words = params[:micropost][:string]
     render "static_pages/home"
   end
 

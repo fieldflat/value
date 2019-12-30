@@ -83,6 +83,11 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  def display_rooms
+    micropost_ids = "SELECT id FROM microposts WHERE user_id = :current_user_id"
+    Room.where("buyer_id = :current_user_id OR micropost_id IN (#{micropost_ids})", current_user_id: id)
+  end
+
   private
 
     # メールアドレスをすべて小文字にする

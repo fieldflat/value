@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   before_action :logged_in_user, only: [:index, :create]
 
   def index
-    @rooms = current_user.my_room
+    @rooms = current_user.display_rooms
   end
 
   def create
