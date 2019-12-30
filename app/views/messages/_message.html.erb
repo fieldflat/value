@@ -1,0 +1,31 @@
+<li id="message-<%= message.id %>" style="list-style: none; padding-bottom: 10px;" class="messages" data-id="<%= message.id %>">
+  <% if current_user.id == message.from_id %>
+    <div style="margin: 0 0 0 auto;  width: 80%;">
+      <div style=" width: 100%; margin: 0 0 0 auto; overflow: hidden;">
+        <span class="image" id="from"><%= message.content %></span>
+      </div>
+    </div>
+  <% else %>
+    <div class="text-left" style="width: 80%;">
+      <div style=" width: 100%;  overflow: hidden;">
+        <span class="image" id="to"><%=  message.content %></span>
+      </div>
+    </div>
+  <% end %>
+</li><br>
+
+<style>
+#from {
+  background-color: rgb(4, 189, 0);
+  float: right;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+#to {
+  background-color: rgb(159, 157, 159);
+  float: left;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+</style>

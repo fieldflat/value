@@ -4,7 +4,7 @@
   <% else %>
     <ul style="padding: 0;">
       <% @rooms.each do |room| %>
-        <li style="list-style: none;">
+        <li style="list-style: none;" class="uk-margin">
           <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
             <h3 class="uk-card-title"><%= room.micropost.title %></h3>
             <div>
@@ -12,7 +12,7 @@
                 <button class="uk-button uk-button-default" id="micropost-<%= room.micropost.id %>" uk-toggle="target: #modal-micropost-<%= room.micropost.id %>">
                   商品情報
                 </button>
-                <button class="uk-button uk-button-primary">メッセージ</button>
+                <%= link_to "メッセージ", room, class: "uk-button uk-button-primary" %>
               </p>
             </div>
           </div>
@@ -30,19 +30,7 @@
             <p><%= room.micropost.content %></p>
             <p><%= room.micropost.price %></p>
             <p><%= link_to room.micropost.user.name, room.micropost.user %>の出品(<span style="font-size: 14px;"><%= room.micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
-            <% if !current_user.nil? && current_user.id == room.micropost.user.id %>
-              <p class="uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close uk-button-small" type="button">閉じる</button>
-                <%= link_to "編集する", edit_micropost_path(room.micropost), class: "uk-button uk-button-primary uk-button-small" %>
-                <%= link_to "削除する", micropost_path(room.micropost), method: :delete, data: {confirm: "削除します。よろしいですか？"}, class: "uk-button uk-button-danger uk-button-small" %>
-              </p>
-            <% else %>
-              <p class="uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
-                <%= link_to "購入する", rooms_path(micropost_id: room.micropost.id), method: :post, class: "uk-button uk-button-primary", data: {confirm: "購入します。よろしいですか？"} %>
-                <%# <button class="uk-button uk-button-primary" type="button">購入する</button> %>
-              </p>
-            <% end %>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
           </div>
         </div>
       <% end %>

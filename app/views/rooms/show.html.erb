@@ -1,0 +1,42 @@
+<div class="uk-container" style="height: 80%">
+  <h1>Room<%= @room.id %></h1>
+  <!-- メッセージのやりとり -->
+  <div id="area" style="margin: 0 auto; width: 90%; overflow:auto; height: 40vh;">
+    <% if @messages.any? %>
+      <%= render @messages %>
+    <% end %>
+  </div>
+
+  <!-- メッセージ入力部分 -->
+  <div>
+    <%= form_for(@message) do |f| %>
+      <div class="uk-margin message-textarea">
+        <%= f.text_area :content, class:"uk-textarea", id:"form-stacked-text-content", type:"text", placeholder:"相手と連絡して，引き渡し場所などを決めましょう。", rows: 2 %>
+
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.hidden_field :from_id, value: current_user.id %>
+
+        <% if current_user.id == @room.buyer_id %>
+          <%= f.hidden_field :to_id, value: @room.micropost.user.id%>
+        <% else %>
+          <%= f.hidden_field :to_id, value: @room.buyer_id%>
+        <% end %>
+
+        <div style="text-align: center; margin-top: 0.5em;">
+          <%= f.submit "送信", class: "uk-button uk-button-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .message-textarea {
+    width: 90%;
+    color: #fff;
+    margin-bottom: 1em !important;
+
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+  }
+</style>

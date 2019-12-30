@@ -21,6 +21,8 @@
   <body>
     <%= render 'layouts/header' %>
     <%= yield %>
-    <%= render 'layouts/footer' %>
+    <% unless request.path_info =~ /rooms\/\d/ %>
+      <%= render 'layouts/footer' %>
+    <% end %>
   </body>
 </html>
