@@ -1,20 +1,30 @@
 <div class="uk-container">
   <aside>
     <section class="user_info" style="margin: 3em 0;">
-      <h3>
+      <h3 style="text-align: center;">
         <%= @user.name %>
       </h3>
       
-      <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
-        <div>出品数</div>
-        <div>評価</div>
-        <div>ひとこと</div>
+      <div style="display: flex; text-align: center;" uk-grid>
+        <div style="flex:1;"><%= image_tag('good.jpg', style: "width: 33%;") %></div>
+        <div style="flex:1;"><%= image_tag('normal.jpg', style: "width: 33%;") %></div>
+        <div style="flex:1;"><%= image_tag('bad.jpg', style: "width: 33%;") %></div>
+      </div>
+      <div style="display: flex; text-align: center; margin-top: 10px;" uk-grid>
+        <div style="flex:1;">13</div>
+        <div style="flex:1;">2</div>
+        <div style="flex:1;">0</div>
       </div>
     </section>
   </aside>
 
+  <div class="uk-margin" style="width: 80%; margin: 0 auto;">
+    <p>一言をここに表示させます。一言をここに表示させます。一言をここに表示させます。一言をここに表示させます。</p>
+  </div>
+
   <div class="uk-text-center" uk-grid>
-    <% if @user.microposts.any? %>
+    <h3 class="uk-heading-bullet">現在出品中のアイテム(<%= @user.microposts.where(purchased: false).count %>)</h3>
+    <% if @user.microposts.where(purchased: false).any? && @user.microposts.where(purchased: false).count > 0 %>
       <%= render @microposts %>
     <% else %>
       <p>まだ出品がありません。</p>
