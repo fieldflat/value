@@ -22,6 +22,17 @@
       <%= f.text_field :grade, class:"uk-input", id:"form-stacked-text-grade", type:"text", placeholder:"(例) 学部3年" %>
     </div>
 
+    <div class="uk-margin">
+      <%= f.label :comment, "ひとこと",  class:"uk-form-label", for:"form-stacked-text-comment" %>
+      <%= f.text_area :comment, class:"uk-textarea", id:"form-stacked-text-comment", type:"text", placeholder:"(例) 名古屋大学の学部3年生です。よろしくお願いいたします。", rows: 10 %>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :user_image, "プロフィール画像", class:"uk-form-label", for:"" %>
+      <%= f.file_field :user_image, accept: 'image/jpeg,image/gif,image/png', id:"" %><br/>
+      <span style="color: red;">※画像は「スクエア」で載せてください！</span>
+    </div>
+
     <div class="uk-margin" style="text-align: center;">
       <%= f.submit "登録", class: "uk-button uk-button-primary" %>
     </div>

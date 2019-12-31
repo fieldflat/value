@@ -1,10 +1,17 @@
 <div class="uk-container">
   <aside>
     <section class="user_info" style="margin: 3em 0;">
+      <div style="text-align: center;">
+        <%= image_tag(@user.user_image.url, style: "width: 10em; border-radius: 50%;") %>
+      </div>
       <h3 style="text-align: center;">
         <%= @user.name %>
       </h3>
-      
+
+      <div class="uk-margin" style="width: 80%; margin: 0 auto; padding-bottom: 3em;">
+        <p><%= @user.comment %></p>
+      </div>
+
       <div style="display: flex; text-align: center;" uk-grid>
         <div style="flex:1;"><%= image_tag('good.jpg', style: "width: 33%;") %></div>
         <div style="flex:1;"><%= image_tag('normal.jpg', style: "width: 33%;") %></div>
@@ -17,10 +24,6 @@
       </div>
     </section>
   </aside>
-
-  <div class="uk-margin" style="width: 80%; margin: 0 auto;">
-    <p>一言をここに表示させます。一言をここに表示させます。一言をここに表示させます。一言をここに表示させます。</p>
-  </div>
 
   <div class="uk-text-center" uk-grid>
     <h3 class="uk-heading-bullet">現在出品中のアイテム(<%= @user.microposts.where(purchased: false).count %>)</h3>

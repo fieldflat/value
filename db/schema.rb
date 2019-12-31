@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_31_012519) do
+ActiveRecord::Schema.define(version: 2019_12_31_044604) do
 
   create_table "evaluations", force: :cascade do |t|
     t.integer "micropost_id"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2019_12_31_012519) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.string "user_image"
+    t.text "comment"
   end
 
 end
