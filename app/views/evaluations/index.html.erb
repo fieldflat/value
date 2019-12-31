@@ -1,0 +1,45 @@
+<div class="uk-container">
+  <h3>全ての評価</h3>
+
+  <ul style="padding: 0;">
+    <% @evaluations.each do |evaluation| %>
+      <li style="list-style: none;" class="uk-margin" uk-toggle="target: #modal-evaluation-<%= evaluation.id %>">
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+          <div style="display: flex;">
+            <h3 class="uk-card-title" style="flex: 1;"><%= evaluation.micropost.title %></h3>
+            <div style="flex: 1; text-align: right;">
+              <% if evaluation.value == 1 %>
+                <%= image_tag('good.jpg', style: "width: 20%;") %>
+              <% elsif evaluation.value == 2 %>
+                <%= image_tag('normal.jpg', style: "width: 20%;") %>
+              <% elsif evaluation.value == 3 %>
+                <%= image_tag('bad.jpg', style: "width: 20%;") %>
+              <% end %>
+            </div>
+          </div>
+          <div>
+            <p uk-margin>
+              <%= evaluation.comment %>
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <!-- This is the modal -->
+      <div id="modal-evaluation-<%= evaluation.id %>" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+          <h2 class="uk-modal-title"><%= evaluation.micropost.title %></h2>
+          <% if evaluation.micropost.picture? %>
+            <%= image_tag evaluation.micropost.picture.url, class: "uk-img" %>
+          <% else %>
+            <%= image_tag 'sample_item.jpg', class: "uk-img" %>
+          <% end %>
+          <p><%= evaluation.micropost.content %></p>
+          <p><%= evaluation.micropost.price %></p>
+          <p><%= link_to evaluation.micropost.user.name, evaluation.micropost.user %>の出品(<span style="font-size: 14px;"><%= evaluation.micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
+          <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+</div>

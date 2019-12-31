@@ -1,4 +1,8 @@
 class EvaluationsController < ApplicationController
+  def index
+    @evaluations = Evaluation.where(to_id: params[:user_id])
+  end
+
   def new
     @evaluation = Evaluation.new(from_id: current_user.id, to_id: params[:to_id], micropost_id: params[:micropost_id])
   end
