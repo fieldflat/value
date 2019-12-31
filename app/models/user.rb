@@ -85,7 +85,8 @@ class User < ApplicationRecord
 
   def display_rooms
     micropost_ids = "SELECT id FROM microposts WHERE user_id = :current_user_id"
-    Room.where("buyer_id = :current_user_id OR micropost_id IN (#{micropost_ids})", current_user_id: id)
+    rooms = Room.where("buyer_id = :current_user_id OR micropost_id IN (#{micropost_ids})", current_user_id: id)
+                .where.not(used: true)
   end
 
   private

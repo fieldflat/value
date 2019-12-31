@@ -1,0 +1,26 @@
+<div class="uk-container">
+  <%= form_for(@evaluation) do |f| %>
+
+    <%= f.hidden_field :from_id, value: @evaluation.from_id %>
+    <%= f.hidden_field :to_id, value: @evaluation.to_id %>
+    <%= f.hidden_field :micropost_id, value: @evaluation.micropost_id %>
+
+    <div class="uk-margin">
+      <%= f.label :value, "評価", class:"uk-form-label", for:"form-horizontal-request" %>
+      <div class="uk-form-controls">
+        <%= f.select :value, [["いいね!", 1], ["普通", 2], ["不満", 3]], {},  class: "uk-select", id: "form-horizontal-request", :prompt => "選択してください。"  %>
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :comment, "値段",  class:"uk-form-label", for:"form-stacked-text-content" %>
+      <%= f.text_area :comment, class:"uk-textarea", id:"form-stacked-text-content", type:"text", placeholder:"(例) とても良い取引ができました。有難うございます。", rows: 10 %>
+    </div>
+
+    <div class="uk-margin" style="text-align: center;">
+      <%= f.submit "評価を送信", class: "uk-button uk-button-primary" %>
+    </div>
+
+  <% end %>
+
+</div>

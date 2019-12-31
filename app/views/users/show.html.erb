@@ -11,9 +11,9 @@
         <div style="flex:1;"><%= image_tag('bad.jpg', style: "width: 33%;") %></div>
       </div>
       <div style="display: flex; text-align: center; margin-top: 10px;" uk-grid>
-        <div style="flex:1;">13</div>
-        <div style="flex:1;">2</div>
-        <div style="flex:1;">0</div>
+        <div style="flex:1;"><%= Evaluation.where(to_id: current_user.id, value: 1).count %></div>
+        <div style="flex:1;"><%= Evaluation.where(to_id: current_user.id, value: 2).count %></div>
+        <div style="flex:1;"><%= Evaluation.where(to_id: current_user.id, value: 3).count %></div>
       </div>
     </section>
   </aside>

@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   resources :microposts,          only: [:create, :destroy, :new, :edit, :update]
   resources :rooms
   resources :messages
+  resources :evaluations
 end

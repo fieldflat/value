@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_30_053652) do
+ActiveRecord::Schema.define(version: 2019_12_31_012519) do
+
+  create_table "evaluations", force: :cascade do |t|
+    t.integer "micropost_id"
+    t.integer "value"
+    t.text "comment"
+    t.integer "from_id"
+    t.integer "to_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_evaluations_on_micropost_id"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.integer "room_id"
@@ -41,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_053652) do
     t.integer "micropost_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "used", default: false
     t.index ["micropost_id"], name: "index_rooms_on_micropost_id"
   end
 

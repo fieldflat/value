@@ -1,22 +1,31 @@
 <div class="uk-container">
-  <% if @rooms.empty? %>
+  <% if @rooms.empty? || @rooms.count == 0 %>
     <p>購入中の商品はありません。</p>
   <% else %>
     <ul style="padding: 0;">
       <% @rooms.each do |room| %>
-        <li style="list-style: none;" class="uk-margin">
-          <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-            <h3 class="uk-card-title"><%= room.micropost.title %></h3>
-            <div>
-              <p uk-margin>
-                <button class="uk-button uk-button-default" id="micropost-<%= room.micropost.id %>" uk-toggle="target: #modal-micropost-<%= room.micropost.id %>">
-                  商品情報
-                </button>
-                <%= link_to "メッセージ", room, class: "uk-button uk-button-primary" %>
-              </p>
+        <% if Evaluation.where(micropost_id: room.micropost.id).count != 2 %>
+          <li style="list-style: none;" class="uk-margin">
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+              <% if !Evaluation.find_by(from_id: current_user.id, micropost_id: room.micropost.id).nil? %>
+                <div class="uk-card-badge uk-label">相手の評価待ち</div>
+              <% end %>
+              <h3 class="uk-card-title"><%= room.micropost.title %></h3>
+              <div>
+                <p uk-margin>
+                  <button class="uk-button uk-button-default" id="micropost-<%= room.micropost.id %>" uk-toggle="target: #modal-micropost-<%= room.micropost.id %>">
+                    商品情報
+                  </button>
+                  <% if !Evaluation.find_by(from_id: current_user.id, micropost_id: room.micropost.id).nil? %>
+                    <%= link_to "メッセージ", "#", class: "uk-button uk-button-disabled" %>
+                  <% else %>
+                    <%= link_to "メッセージ", room, class: "uk-button uk-button-primary" %>
+                  <% end %>
+                </p>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+        <% end %>
 
         <!-- This is the modal -->
         <div id="modal-micropost-<%= room.micropost.id %>" uk-modal>

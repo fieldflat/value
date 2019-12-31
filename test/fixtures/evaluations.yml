@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  micropost: one
+  value: 1
+  comment: MyText
+  from_id: 1
+  to_id: 1
+
+two:
+  micropost: two
+  value: 1
+  comment: MyText
+  from_id: 1
+  to_id: 1
