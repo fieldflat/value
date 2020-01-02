@@ -22,7 +22,7 @@ class UserMailer < ApplicationMailer
     @buyer = buyer
     @seller = seller
     @room = room
-    mail to: seller.email, subject: "【Value】商品が購入されました！"
+    mail to: buyer.email, subject: "【Value】商品が購入されました！"
   end
 
   def notice_message(micropost, from, to, room)
