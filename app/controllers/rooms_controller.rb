@@ -18,6 +18,8 @@ class RoomsController < ApplicationController
       @micropost.purchased = true
       @micropost.save
       flash[:success] = "商品を購入しました！"
+      UserMailer.notice_buying(@micropost, current_user, @micropost.user, @room).deliver_now
+      UserMailer.notice_bought(@micropost, current_user, @micropost.user, @room).deliver_now
       redirect_to rooms_url
     else
       flash[:danger] = "商品を購入できませんでした"

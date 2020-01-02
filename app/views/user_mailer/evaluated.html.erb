@@ -1,11 +1,8 @@
-<h1>Value アカウント有効化手続き</h1>
-
-<p><%= @user.name %>様、</p>
+<p><%= @to.name %>様、</p>
 
 <p>
-この度はValueに登録してくださり、ありがとうございます。
-<%= link_to "こちらのリンクからアカウント有効化手続きを行なってください。", edit_account_activation_url(@user.activation_token,
-                                                    email: @user.email) %><br>
+<%= @from.name %>様が、商品「<%= @micropost.title %>」の評価を完了いたしました！<br>
+まだ評価をしていない場合は、取引の評価をして取引を終了しましょう。
 </p>
 
 <p>

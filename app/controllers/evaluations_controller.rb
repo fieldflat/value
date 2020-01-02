@@ -10,10 +10,24 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = Evaluation.new(evaluation_params)
     if @evaluation.save
+      room = Room.find_by(micropost_id: @evaluation.micropost.id)
       if Evaluation.where(micropost_id: @evaluation.micropost.id).count == 2
-        room = Room.find_by(micropost_id: @evaluation.micropost.id)
         room.used = true
         room.save
+        from = User.find(@evaluation.from_id)
+        to = User.find(@evaluation.to_id)
+        UserMailer.evaluating_done(room.micropost, from, to, room).deliver_now
+        UserMailer.evaluating_done(room.micropost, to, from, room).deliver_now
+      end
+
+      if current_user.id == @evaluation.from_id
+        to = User.find(@evaluation.to_id)
+        UserMailer.evaluating(room.micropost, to, current_user, room).deliver_now
+        UserMailer.evaluated(room.micropost, current_user, to, room).deliver_now
+      elsif current_user.id == @evaluation.to_id
+        from = User.find(@evaluation.from_id)
+        UserMailer.evaluating(room.micropost, from, current_user, room).deliver_now
+        UserMailer.evaluated(room.micropost, current_user, from, room).deliver_now
       end
       flash[:success] = "評価をしました！"
       redirect_to rooms_url

@@ -1,14 +1,11 @@
-Value アカウント有効化手続き
+<%= @buyer.name %>様、
 
-<%= @user.name %>様、
-この度はValueに登録してくださり、ありがとうございます。
-
-<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+貴方は、<%= @seller.name %>様の商品「<%= @micropost.title %>」を購入されました。
+<%= link_to "こちらのリンク", room_url(@room.id) %>からメッセージのやり取りをし、取引日時・取引場所を決定しましょう。
 
 Valueは大学内価値売買サービスです。
 要らなくなった教科書を売ったり、一人暮らしの自宅の掃除を依頼したりすることができます。
 Valueを通じて価値を売買し、日々の生活をもっと便利にしましょう！
-
 
 Value
 お問い合わせは以下のメールアドレスへ
