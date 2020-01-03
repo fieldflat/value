@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   resources :rooms
   resources :messages
   resources :evaluations
+  resources :contacts, only: [:new, :create]
 end

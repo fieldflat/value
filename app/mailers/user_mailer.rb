@@ -56,4 +56,10 @@ class UserMailer < ApplicationMailer
     @room = room
     mail to: to.email, subject: "【Value】取引が終了しました！"
   end
+
+  def send_contact_mail(content, user)
+    @content = content
+    @user = user
+    mail to: "tomonori4565@icloud.com", subject: "【Value：管理者へ】お問い合わせが届きました！"
+  end
 end

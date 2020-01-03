@@ -1,0 +1,19 @@
+<% provide(:title, 'お問い合わせ') %>
+
+<div class="uk-container">
+  <h2>お問い合わせ</h2>
+  <%= form_for(@contact) do |f| %>
+    <%= render 'layouts/error_messages', object: f.object %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <div class="uk-margin">
+      <%= f.label :content, "お問い合わせ内容",  class:"uk-form-label", for:"form-stacked-text-content" %>
+      <%= f.text_area :content, class:"uk-textarea", id:"form-stacked-text-content", type:"text", placeholder:"お問い合わせ内容を詳細に記載してください。", rows: 10 %>
+    </div>
+
+    <div class="uk-margin" style="text-align: center;">
+      <%= f.submit "送信する", class: "uk-button uk-button-primary", data: {confirm: "本当に送信しますか？"} %>
+    </div>
+  <% end %>
+</div>
