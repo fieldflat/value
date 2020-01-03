@@ -12,6 +12,11 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(microposts_params)
+    if params[:micropost][:requested] == 'true'
+      @micropost.requested = true
+    elsif params[:micropost][:requested] == 'false'
+      @micropost.requested = false
+    end
     if @micropost.save
       flash[:success] = "出品しました！"
       redirect_to current_user
@@ -32,6 +37,12 @@ class MicropostsController < ApplicationController
 
   def update
     if @micropost.update_attributes(microposts_params)
+      if params[:micropost][:requested] == 'true'
+        @micropost.requested = true
+      elsif params[:micropost][:requested] == 'false'
+        @micropost.requested = false
+      end
+      @micropost.save
       flash[:success] = "編集しました！"
       redirect_to current_user
     else
@@ -43,14 +54,18 @@ class MicropostsController < ApplicationController
     @microposts = Micropost.where(purchased: false)
     @microposts = @microposts.where("title like ?", "%"+params[:micropost][:string]+"%")
                              .or(Micropost.where(purchased: false).where("content like ?", "%"+params[:micropost][:string]+"%"))
+    if params[:micropost][:tag] != ""
+      @microposts = @microposts.where(tag: params[:micropost][:tag])
+    end
     @search_words = params[:micropost][:string]
+    @tag = params[:micropost][:tag]
     render "static_pages/home"
   end
 
   private
 
     def microposts_params
-      params.require(:micropost).permit(:title, :content, :price, :picture)
+      params.require(:micropost).permit(:title, :content, :price, :picture, :tag)
     end
 
     def correct_user

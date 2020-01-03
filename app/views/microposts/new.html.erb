@@ -1,4 +1,4 @@
-<% provide(:title, 'Sign up') %>
+<% provide(:title, '出品') %>
 
 <div class="uk-container">
   <%= form_for(@micropost) do |f| %>
@@ -22,7 +22,19 @@
     <div class="uk-margin">
       <%= f.label :requested, "出品型＆依頼型", class:"uk-form-label", for:"form-horizontal-request" %>
       <div class="uk-form-controls">
-        <%= f.select :requested, [["出品型(フリマ)", false], ["依頼型(掃除など)", true]], {},  class: "uk-select", id: "form-horizontal-request", :prompt => "選択してください。"  %>
+        <%= f.select :requested, [["出品型(フリマ)", false], ["依頼型(掃除など)", true]], {},  class: "uk-select", id: "form-horizontal-request"  %>
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <%= f.label :tag, "タグ", class:"uk-form-label", for:"form-horizontal-request" %>
+      <div class="uk-form-controls">
+        <%= f.select :tag, [["【出品型】本(教科書)", "【出品型】本(教科書)"], ["【出品型】本(教科書以外)", "【出品型】本(教科書以外)"],
+                            ["【出品型】衣服", "【出品型】衣服"], ["【出品型】雑貨", "【出品型】雑貨"],
+                            ["【出品型】家電", "【出品型】家電"], ["【出品型】その他", "【出品型】その他"],
+                            ["【依頼型】掃除", "【依頼型】掃除"], ["【依頼型】学習", "【依頼型】学習"],
+                            ["【依頼型】その他", "【依頼型】その他"]],
+                           {},  class: "uk-select", id: "form-horizontal-request"  %>
       </div>
     </div>
 

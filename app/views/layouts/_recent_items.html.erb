@@ -1,7 +1,15 @@
 <div class="uk-container" style="margin-top: 3em;">
   <h2 class="uk-heading-bullet">最近出品されたアイテム(<%= @microposts.count %>)</h2>
   <% if defined? @search_words %>
-    <p>「<%= @search_words %>」で検索した結果</p>
+    <p>
+     <% if @search_words != ""%>
+      検索ワード「<%= @search_words %>」，
+     <% end %>
+     <% if @tag != "" %>
+      タグ「<%= @tag %>」
+     <% end %>
+     で検索した結果
+    </p>
   <% end %>
 
   <div class="uk-text-center" uk-grid>

@@ -43,6 +43,11 @@
             <p><%= room.micropost.price %></p>
             <p><%= link_to room.micropost.user.name, room.micropost.user %>　様の出品(<span style="font-size: 14px;"><%= room.micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
             <p><%= link_to User.find(room.buyer_id).name, User.find(room.buyer_id) %>　様が購入</p>
+            <% if room.micropost.requested %>
+              <p>依頼型(<%= room.micropost.tag %>)</p>
+            <% else %>
+              <p>出品型(<%= room.micropost.tag %>)</p>
+            <% end %>
             <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
           </div>
         </div>

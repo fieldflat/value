@@ -1,4 +1,7 @@
-<div class="uk-width-1-3" id="micropost-<%= micropost.id %>" uk-toggle="target: #modal-micropost-<%= micropost.id %>">
+<div class="uk-width-1-3" id="micropost-<%= micropost.id %>" uk-toggle="target: #modal-micropost-<%= micropost.id %>" style="position: relative;">
+  <% if micropost.requested %>
+    <p style="position: absolute; top: 5px; z-index: 1; font-size: 10px; background: blue; color: white;">依頼型</p>
+  <% end %>
   <div class="uk-card uk-card-default uk-card-body" style="padding: 0 !important;">
     <% if micropost.picture? %>
       <%= image_tag micropost.picture.url, class: "uk-img", style: 'height: 6em !important;' %>
@@ -24,6 +27,11 @@
     <p><%= micropost.content %></p>
     <p><%= micropost.price %></p>
     <p><%= link_to micropost.user.name, micropost.user %>の出品(<span style="font-size: 14px;"><%= micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
+    <% if micropost.requested %>
+      <p>依頼型(<%= micropost.tag %>)</p>
+    <% else %>
+      <p>出品型(<%= micropost.tag %>)</p>
+    <% end %>
     <% if !current_user.nil? && current_user.id == micropost.user.id %>
       <p class="uk-text-right">
         <button class="uk-button uk-button-default uk-modal-close uk-button-small" type="button">閉じる</button>

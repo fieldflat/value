@@ -37,6 +37,11 @@
           <p><%= evaluation.micropost.content %></p>
           <p><%= evaluation.micropost.price %></p>
           <p><%= link_to evaluation.micropost.user.name, evaluation.micropost.user %>の出品(<span style="font-size: 14px;"><%= evaluation.micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
+          <% if evaluation.micropost.requested %>
+            <p>依頼型(<%= evaluation.micropost.tag %>)</p>
+          <% else %>
+            <p>出品型(<%= evaluation.micropost.tag %>)</p>
+          <% end %>
           <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
         </div>
       </div>
