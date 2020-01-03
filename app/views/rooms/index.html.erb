@@ -1,4 +1,5 @@
 <div class="uk-container">
+  <h2 class="uk-heading-bullet">取引中のアイテム</h2>
   <% if @rooms.empty? || @rooms.count == 0 %>
     <p>購入中の商品はありません。</p>
   <% else %>
@@ -8,9 +9,11 @@
           <li style="list-style: none;" class="uk-margin">
             <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
               <% if !Evaluation.find_by(from_id: current_user.id, micropost_id: room.micropost.id).nil? %>
-                <div class="uk-card-badge uk-label">相手の評価待ち</div>
+                <div class="uk-label">相手の評価待ち</div>
+              <% elsif !Evaluation.find_by(to_id: current_user.id, micropost_id: room.micropost.id).nil? %>
+                <div class="uk-label" style="background: red;">あなたの評価待ち</div>
               <% end %>
-              <h3 class="uk-card-title"><%= room.micropost.title %></h3>
+              <h4 class="uk-card-title" style="margin-top: 20px;"><%= room.micropost.title %></h4>
               <div>
                 <p uk-margin>
                   <button class="uk-button uk-button-default" id="micropost-<%= room.micropost.id %>" uk-toggle="target: #modal-micropost-<%= room.micropost.id %>">
@@ -38,7 +41,8 @@
             <% end %>
             <p><%= room.micropost.content %></p>
             <p><%= room.micropost.price %></p>
-            <p><%= link_to room.micropost.user.name, room.micropost.user %>の出品(<span style="font-size: 14px;"><%= room.micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
+            <p><%= link_to room.micropost.user.name, room.micropost.user %>　様の出品(<span style="font-size: 14px;"><%= room.micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
+            <p><%= link_to User.find(room.buyer_id).name, User.find(room.buyer_id) %>　様が購入</p>
             <button class="uk-button uk-button-default uk-modal-close" type="button">閉じる</button>
           </div>
         </div>
