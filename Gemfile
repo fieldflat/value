@@ -29,8 +29,10 @@ gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'kaminari'
 gem 'carrierwave'
-gem 'mini_magick'
+# gem 'mini_magick'
 gem 'rmagick'
+gem 'refile'
+gem 'mini_magick'
 gem "aws-sdk-s3", require: false
 
 # Use ActiveStorage variant

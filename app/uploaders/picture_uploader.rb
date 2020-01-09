@@ -38,13 +38,17 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   process :fix_rotate
 
-  # アップロードした写真が回転してしまう問題に対応
-  def fix_rotate
-      manipulate! do |img|
-          img = img.auto_orient
-          img = yield(img) if block_given?
-          img
-      end
+  def auto
+    manipulate! do|image|
+      image.auto_orient
+    end
+  end
+
+  # ここも追加
+  process :auto
+  process :resize_to_limit => [850, 600]
+  version :thumb do
+    process :resize_to_fit => [400, 400]
   end
 
   # Create different versions of your uploaded files:

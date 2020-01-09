@@ -23,6 +23,19 @@ class UserImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def auto
+    manipulate! do|image|
+      image.auto_orient
+    end
+  end
+
+  # ここも追加
+  process :auto
+  process :resize_to_limit => [850, 600]
+  version :thumb do
+    process :resize_to_fit => [400, 400]
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
