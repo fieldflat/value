@@ -10,4 +10,7 @@ class StaticPagesController < ApplicationController
 
   def creator_info
   end
+
+  def how_to_use
+  end
 end

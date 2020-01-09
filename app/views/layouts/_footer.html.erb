@@ -2,6 +2,7 @@
 <footer style="margin-top: 2em;">
   <div class="uk-container" style="background: rgb(66, 61, 61); color: white; padding-bottom: 2em;">
     <p style="font-size: 24px; margin-top: 1em;">Value</p>
+    <p><%= link_to "使い方", static_pages_how_to_use_path, style: "margin-top: 1em; color: white;" %></p>
     <p><%= link_to "サイトの製作者情報", static_pages_creator_info_path, style: "margin-top: 1em; color: white;" %></p>
     <% if logged_in? %>
       <p><%= link_to "お問い合わせ", new_contact_path, style: "margin-top: 1em; color: white;" %></p>
