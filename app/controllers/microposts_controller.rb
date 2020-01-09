@@ -30,7 +30,7 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
-    @micropost.destroy
+    @micropost.delete
     flash[:success] = "削除しました。"
     redirect_to current_user
   end
