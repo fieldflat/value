@@ -19,11 +19,13 @@
 <div id="modal-micropost-<%= micropost.id %>" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
     <h2 class="uk-modal-title"><%= micropost.title %></h2>
-    <% if micropost.picture? %>
-      <%= image_tag micropost.picture.url, class: "uk-img" %>
-    <% else %>
-      <%= image_tag 'sample_item.jpg', class: "uk-img" %>
-    <% end %>
+    <div style="text-align: center !important;">
+      <% if micropost.picture? %>
+        <%= image_tag micropost.picture.url, class: "uk-img" %>
+      <% else %>
+        <%= image_tag 'sample_item.jpg', class: "uk-img" %>
+      <% end %>
+    </div>
     <p><%= micropost.content %></p>
     <p><%= micropost.price %></p>
     <p><%= link_to micropost.user.name, micropost.user %>の出品(<span style="font-size: 14px;"><%= micropost.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></span>)</p>
