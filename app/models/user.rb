@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates :grade, presence: true, length: { maximum: 50 }
   validates :comment, length: { maximum: 200 }
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
+  validate  :picture_size
   has_secure_password
 
   # 渡された文字列のハッシュ値を返す
@@ -102,5 +103,12 @@ class User < ApplicationRecord
     def create_activation_digest
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
+    end
+
+    # アップロードされた画像のサイズをバリデーションする
+    def picture_size
+      if picture.size > 5.megabytes
+        errors.add(:picture, "should be less than 5MB")
+      end
     end
 end
