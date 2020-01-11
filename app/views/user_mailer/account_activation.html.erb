@@ -6,6 +6,8 @@
 この度はValueに登録してくださり、ありがとうございます。
 <%= link_to "こちらのリンクからアカウント有効化手続きを行なってください。", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %><br>
+もしくは以下のリンクにアクセスしてください。<br><br>
+<%= edit_account_activation_url(@user.activation_token, email: @user.email)  %>
 </p>
 
 <p>
