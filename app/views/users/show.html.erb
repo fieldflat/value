@@ -26,8 +26,8 @@
     </section>
   </aside>
 
-  <div class="uk-text-center" uk-grid>
-    <h3 class="uk-heading-bullet">現在出品中のアイテム(<%= @user.microposts.where(purchased: false).count %>)</h3>
+  <h3 class="uk-heading-bullet">現在出品中のアイテム(<%= @user.microposts.where(purchased: false).count %>)</h3>
+  <div class="uk-text-center" style="margin-top: 3em;" uk-grid>
     <% if @user.microposts.where(purchased: false).any? && @user.microposts.where(purchased: false).count > 0 %>
       <%= render @microposts %>
     <% else %>
